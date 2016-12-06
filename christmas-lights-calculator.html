@@ -15,6 +15,24 @@
         border: 2px solid lightgray;
         padding: 0.35rem;
     }
+    
+    .section-break {
+        border-top: 1px solid red;
+        padding: .5rem;
+    }
+    
+    label.light-type {
+        font-size: .875rem;
+        color: #aaa;
+        font-weight: bold;
+    }
+    p.column-heading {
+        font-size: 1rem;
+        color: #990012;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center;
+    }
     </style>
 </head>
 
@@ -24,38 +42,81 @@
             <h1>Christmas Lights Cost Calculator</h1>
         </div>
     </div>
+    <div class="row">
+        <div class="large-4 small-4 columns">
+            <p class="column-heading">Light type</p>
+        </div>
+        <div class="large-4 small-4 columns">
+            <p class="column-heading">Regular bulbs</p>
+        </div>
+        <div class="large-4 small-4 columns">
+            <p class="column-heading">LED bulbs</p>
+        </div>
+    </div>
     <form id="lights-form" name="lights-form">
         <div class="row">
             <div class="large-4 small-4 columns">
-                <label>100 mini lights
+                <label class="light-type">100 mini lights
                     <input type="text" name="quantitymini" placeholder="No. of strands" />
                 </label>
             </div>
             <div class="large-4 small-4 columns">
-                <label>Reg
+                <label>
                     <div class="answer" id="monthly-reg-mini"> 0 </div>
                 </label>
             </div>
             <div class="large-4 small-4 columns">
-                <label>LED
+                <label>
                     <div class="answer" id="monthly-led-mini"> 0 </div>
                 </label>
             </div>
         </div>
         <div class="row">
             <div class="large-4 small-4 columns">
-                <label>25 C9 lights
+                <label class="light-type">25 C9 lights
                     <input type="text" name="quantityc9" placeholder="No. of strands" />
                 </label>
             </div>
             <div class="large-4 small-4 columns">
-                <label>Reg
+                <label>
                     <div class="answer" id="monthly-reg-c9"> 0 </div>
                 </label>
             </div>
             <div class="large-4 small-4 columns">
-                <label>LED
+                <label>
                     <div class="answer" id="monthly-led-c9"> 0 </div>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-4 small-4 columns">
+                <label class="light-type">25 C7 lights
+                    <input type="text" name="quantityc7" placeholder="No. of strands" />
+                </label>
+            </div>
+            <div class="large-4 small-4 columns">
+                <label>
+                    <div class="answer" id="monthly-reg-c7"> 0 </div>
+                </label>
+            </div>
+            <div class="large-4 small-4 columns">
+                <label>
+                    <div class="answer" id="monthly-led-c7"> 0 </div>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-4 small-4 columns">
+                <p>&nbsp;
+            </div>
+            <div class="large-4 small-4 columns">
+                <label>
+                    <div class="answer" id="total-reg"> 0 </div>
+                </label>
+            </div>
+            <div class="large-4 small-4 columns">
+                <label>
+                    <div class="answer" id="total-led"> 0 </div>
                 </label>
             </div>
         </div>
@@ -82,21 +143,34 @@ font-weight: bold; width: 100px; padding: 5px; color:#FFF;"> 0 </div>
     {
         var quantityMini = document.forms["lights-form"].quantitymini.value * 1;
         var quantityC9 = document.forms["lights-form"].quantityc9.value * 1;
+        var quantityC7 = document.forms["lights-form"].quantityc7.value * 1;
 
         var resultMiniReg = (quantityMini * (0.04 * 150 * 0.104));
         var resultMiniLed = (quantityMini * (0.00750952 * 150 * 0.104));
         var resultC9Reg = (quantityC9 * (0.175 * 150 * 0.104));
         var resultC9Led = (quantityC9 * (0.002875 * 150 * 0.104));
+        var resultC7Reg = (quantityC7 * (0.125 * 150 * 0.104));
+        var resultC7Led = (quantityC7 * (0.0024 * 150 * 0.104));
+        var totalReg = resultMiniReg + resultC9Reg + resultC7Reg;
+        var totalLed = resultMiniLed + resultC9Led + resultC7Led;
 
         resultMiniReg = Math.round(resultMiniReg * 100) / 100;
         resultMiniLed = Math.round(resultMiniLed * 100) / 100;
         resultC9Reg = Math.round(resultC9Reg * 100) / 100;
         resultC9Led = Math.round(resultC9Led * 100) / 100;
+        resultC7Reg = Math.round(resultC7Reg * 100) / 100;
+        resultC7Led = Math.round(resultC7Led * 100) / 100;
+        totalReg = Math.round(totalReg * 100) / 100;
+        totalLed = Math.round(totalLed * 100) / 100;
 
         document.getElementById("monthly-reg-mini").innerHTML = '$' + resultMiniReg;
         document.getElementById("monthly-led-mini").innerHTML = '$' + resultMiniLed;
         document.getElementById("monthly-reg-c9").innerHTML = '$' + resultC9Reg;
         document.getElementById("monthly-led-c9").innerHTML = '$' + resultC9Led;
+        document.getElementById("monthly-reg-c7").innerHTML = '$' + resultC7Reg;
+        document.getElementById("monthly-led-c7").innerHTML = '$' + resultC7Led;
+        document.getElementById("total-reg").innerHTML = '$' + totalReg;
+        document.getElementById("total-led").innerHTML = '$' + totalLed;
 
     }
     </script>
