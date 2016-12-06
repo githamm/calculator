@@ -1,86 +1,102 @@
-<html>
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="shortcut icon" href="http://extras.mnginteractive.com/live/media/favIcon/dpo/favicon.ico" type="image/x-icon" />
+    <!-- STYLE SHEET AND SCRIPT -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.1/foundation.css" />
+    <link rel="shortcut icon" href="http://extras.mnginteractive.com/live/media/favIcon/dpo/favicon.ico" type="image/x-icon" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.1/foundation.min.js"></script>
+    <style>
+    div.answer {
+        border: 2px solid lightgray;
+        padding: 0.35rem;
+    }
+    </style>
+</head>
 
 <body>
-    <form>
+    <div class="row">
+        <div class="large-12 columns">
+            <h1>Christmas Lights Cost Calculator</h1>
+        </div>
+    </div>
+    <form id="lights-form" name="lights-form">
         <div class="row">
-            <div class="large-12 columns">
-                <label>Negotiated price
-                    <input type="text" name="nprice" placeholder="large-12.columns" />
+            <div class="large-4 small-4 columns">
+                <label>100 mini lights
+                    <input type="text" name="quantitymini" placeholder="No. of strands" />
+                </label>
+            </div>
+            <div class="large-4 small-4 columns">
+                <label>Reg
+                    <div class="answer" id="monthly-reg-mini"> 0 </div>
+                </label>
+            </div>
+            <div class="large-4 small-4 columns">
+                <label>LED
+                    <div class="answer" id="monthly-led-mini"> 0 </div>
                 </label>
             </div>
         </div>
         <div class="row">
-            <div class="large-12 columns">
-                <label>Sales tax
-                    <input type="text" name="tax" placeholder="large-12.columns" />
+            <div class="large-4 small-4 columns">
+                <label>25 C9 lights
+                    <input type="text" name="quantityc9" placeholder="No. of strands" />
                 </label>
             </div>
-        </div>
-        <div class="row">
-            <div class="large-12 columns">
-                <select name="term">
-                    <option value="36">36 months</option>
-                    <option value="48">48 months</option>
-                    <option value="60">60 months</option>
-                </select>
-            </div>
-        </div>
-        <div class="row">
-            <div class="large-12 columns">
-                <label>Interest rate
-                    <input type="irate" name="rate" placeholder="large-12.columns" />
+            <div class="large-4 small-4 columns">
+                <label>Reg
+                    <div class="answer" id="monthly-reg-c9"> 0 </div>
                 </label>
             </div>
-        </div>
-        <div class="row">
-            <div class="large-12 columns">
-                <label>Sales tax
-                    <input type="downpayment" name="payment" placeholder="large-12.columns" />
+            <div class="large-4 small-4 columns">
+                <label>LED
+                    <div class="answer" id="monthly-led-c9"> 0 </div>
                 </label>
             </div>
         </div>
         <div class="row">
             <div class="large-6 columns">
-                <input name="Input" type="button" value="Calculate payments" onclick="calcpayments()" />
+                <input name="Input" class="button" value="Calculate payments" onclick="calcpayments()" />
             </div>
             <div class="large-6 columns">
-                <input name="reset2" type="reset" value="Clear" />
+                <input name="reset" type="reset" class="button" value="Clear" />
             </div>
         </div>
-        <div class="row">
+    </form>
+    <!--         <div class="row">
             <div class="large-12 columns">
-                <p><b>Your estimated  monthly payment is:</b> </p>
+                <p>100 Mini Lights</p>
                 <div id="monthlypayment" style="font-size: 25px;background-color:#333; 
 font-weight: bold; width: 100px; padding: 5px; color:#FFF;"> 0 </div>
                 </p>
             </div>
-        </div>
-    </form>
+        </div> -->
     <script>
     function calcpayments()
 
     {
-        var nprice = document.forms[0].nprice.value * 1;
+        var quantityMini = document.forms["lights-form"].quantitymini.value * 1;
+        var quantityC9 = document.forms["lights-form"].quantityc9.value * 1;
 
-        var salestax = document.forms[0].tax.value * 1;
-        var interest = document.forms[0].rate.value * 1;
-        var dpayment = document.forms[0].payment.value * 1;
+        var resultMiniReg = (quantityMini * (0.04 * 150 * 0.104));
+        var resultMiniLed = (quantityMini * (0.00750952 * 150 * 0.104));
+        var resultC9Reg = (quantityC9 * (0.175 * 150 * 0.104));
+        var resultC9Led = (quantityC9 * (0.002875 * 150 * 0.104));
 
-        var t;
+        resultMiniReg = Math.round(resultMiniReg * 100) / 100;
+        resultMiniLed = Math.round(resultMiniLed * 100) / 100;
+        resultC9Reg = Math.round(resultC9Reg * 100) / 100;
+        resultC9Led = Math.round(resultC9Led * 100) / 100;
 
-        for (i = 0; i < document.forms[0].term.options.length; i++)
-
-        {
-
-            if (document.forms[0].term.options[i].selected)
-                t = document.forms[0].term.options[i].value * 1;
-        }
-
-        var result = (nprice * (salestax / 100 + 1) - dpayment) * ((interest / 100) / 12) / (1 - Math.pow((1 + (interest / 100) / 12), (-t)));
-
-        result = Math.round(result * 100) / 100;
-
-        document.getElementById("monthlypayment").innerHTML = result;
+        document.getElementById("monthly-reg-mini").innerHTML = '$' + resultMiniReg;
+        document.getElementById("monthly-led-mini").innerHTML = '$' + resultMiniLed;
+        document.getElementById("monthly-reg-c9").innerHTML = '$' + resultC9Reg;
+        document.getElementById("monthly-led-c9").innerHTML = '$' + resultC9Led;
 
     }
     </script>
