@@ -1,0 +1,89 @@
+<html>
+
+<body>
+    <form>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>Negotiated price
+                    <input type="text" name="nprice" placeholder="large-12.columns" />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>Sales tax
+                    <input type="text" name="tax" placeholder="large-12.columns" />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <select name="term">
+                    <option value="36">36 months</option>
+                    <option value="48">48 months</option>
+                    <option value="60">60 months</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>Interest rate
+                    <input type="irate" name="rate" placeholder="large-12.columns" />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <label>Sales tax
+                    <input type="downpayment" name="payment" placeholder="large-12.columns" />
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-6 columns">
+                <input name="Input" type="button" value="Calculate payments" onclick="calcpayments()" />
+            </div>
+            <div class="large-6 columns">
+                <input name="reset2" type="reset" value="Clear" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <p><b>Your estimated  monthly payment is:</b> </p>
+                <div id="monthlypayment" style="font-size: 25px;background-color:#333; 
+font-weight: bold; width: 100px; padding: 5px; color:#FFF;"> 0 </div>
+                </p>
+            </div>
+        </div>
+    </form>
+    <script>
+    function calcpayments()
+
+    {
+        var nprice = document.forms[0].nprice.value * 1;
+
+        var salestax = document.forms[0].tax.value * 1;
+        var interest = document.forms[0].rate.value * 1;
+        var dpayment = document.forms[0].payment.value * 1;
+
+        var t;
+
+        for (i = 0; i < document.forms[0].term.options.length; i++)
+
+        {
+
+            if (document.forms[0].term.options[i].selected)
+                t = document.forms[0].term.options[i].value * 1;
+        }
+
+        var result = (nprice * (salestax / 100 + 1) - dpayment) * ((interest / 100) / 12) / (1 - Math.pow((1 + (interest / 100) / 12), (-t)));
+
+        result = Math.round(result * 100) / 100;
+
+        document.getElementById("monthlypayment").innerHTML = result;
+
+    }
+    </script>
+</body>
+
+</html>
