@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Christmas Lights Cost Calculator</title>
+    <link rel="shortcut icon" href="http://extras.mnginteractive.com/live/media/favIcon/dpo/favicon.ico" type="image/x-icon" />
+    <!-- STYLE SHEET AND SCRIPT -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.1/foundation.css" />
+    <link rel="shortcut icon" href="http://extras.mnginteractive.com/live/media/favIcon/dpo/favicon.ico" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.1/foundation.min.js"></script>
+    <style>
+    div.answer {
+        border: 1px solid #cacaca;
+        height: 2.4375rem;
+        padding: 0.5rem;
+        margin: 0 0 1rem;
+        box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+        font-size: 1rem;
+        color: #0a0a0a;
+    }
+    
+    input.input-box {
+        border: 2px solid #990012;
+        height: 2.4375rem;
+        padding: 0.5rem;
+        margin: 0 0 1rem;
+        box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+        font-size: 1rem;
+        color: #0a0a0a;
+    }
+
+    div.answer-total {
+        border: 1px solid #cacaca;
+        height: 2.4375rem;
+        padding: 0.5rem;
+        margin: 0 0 1rem;
+        box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+        font-size: 1rem;
+        color: #0a0a0a;
+    }
+    
+    label.light-type {
+        font-size: .875rem;
+        color: #424242;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    
+    p.column-heading {
+        font-size: 1rem;
+        color: #990012;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center;
+        background: #ddd;
+        padding: .375rem;
+    }
+    
+    input {
+        font-weight: normal;
+    }
+    
+    span.string-number {
+        color: #646464;
+        text-transform: lowercase;
+        font-style: italic;
+        font-weight: normal;
+    }
+    
+    h1 {
+        font-family: 'Oswald', Arial, sans-serif;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="row">
+        <div class="large-12 columns">
+            <h1>Christmas Lights Cost Calculator</h1>
+            <p>Ever wonder how much your amazing Christmas lights display adds to your energy bill? Use the calculator below to find out. <em><span style="color: #990012;">Instructions: In the "Enter lights info" column, enter the number of strands of each type of lights, then press the "Calculate" button to see the totals.</span> Note: Monthly calculations are based on running lights five hours a day for 30 days and are based on Xcel's "All-in cost" of 10.7 cents per kilowatt-hour, as of December. <a href="http://www.christmaslightsetc.com/pages/led-christmas-lights-guide.htm" target="_blank">Click to see bulb types.</a></em></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-4 small-4 columns">
+            <p class="column-heading">Enter<br>lights info &#8595;</p>
+        </div>
+        <div class="large-4 small-4 columns">
+            <p class="column-heading">Cost<br>Regular lights</p>
+        </div>
+        <div class="large-4 small-4 columns">
+            <p class="column-heading">Cost<br>LED lights</p>
+        </div>
+    </div>
+    <form id="lights-form" name="lights-form">
+        <div class="row">
+            <div class="large-4 small-4 columns">
+                <label class="light-type">Mini
+                    <br><span class="string-number">strand of 100</span>
+                    <input class="input-box" type="number" name="quantitymini" placeholder="# of strands" />
+                </label>
+            </div>
+            <div class="large-4 small-4 columns">
+                <label>&nbsp;
+                    <br>&nbsp;
+                    <div class="answer" id="monthly-reg-mini"> 0 </div>
+                </label>
+            </div>
+            <div class="large-4 small-4 columns">
+                <label>&nbsp;
+                    <br>&nbsp;
+                    <div class="answer" id="monthly-led-mini"> 0 </div>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-4 small-4 columns">
+                <label class="light-type">Med (C7)
+                    <br><span class="string-number">strand of 25</span>
+                    <input class="input-box" type="number" name="quantityc7" placeholder="# of strands" />
+                </label>
+            </div>
+            <div class="large-4 small-4 columns">
+                <label>&nbsp;
+                    <br>&nbsp;
+                    <div class="answer" id="monthly-reg-c7"> 0 </div>
+                </label>
+            </div>
+            <div class="large-4 small-4 columns">
+                <label>&nbsp;
+                    <br>&nbsp;
+                    <div class="answer" id="monthly-led-c7"> 0 </div>
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-4 small-4 columns">
+                <label class="light-type">Large (C9)
+                    <br><span class="string-number">strand of 25</span>
+                    <input class="input-box" type="number" name="quantityc9" placeholder="# of strands" />
+                </label>
+            </div>
+            <div class="large-4 small-4 columns">
+                <label>&nbsp;
+                    <br>&nbsp;
+                    <div class="answer" id="monthly-reg-c9"> 0 </div>
+                </label>
+            </div>
+            <div class="large-4 small-4 columns">
+                <label>&nbsp;
+                    <br>&nbsp;
+                    <div class="answer" id="monthly-led-c9"> 0 </div>
+                </label>
+            </div>
+        </div>
+        <!-- *** TOTALS *** -->
+        <div class="row" style="margin-top: 15px;">
+            <div class="large-4 small-4 columns">
+                <p style="font-size: 1.25rem; color: #990012; font-weight: bold; text-transform: uppercase; text-align: right; margin-top: 4px;">Totals
+            </div>
+            <div class="large-4 small-4 columns">
+                <label>
+                    <div class="answer-total" id="total-reg"> 0 </div>
+                </label>
+            </div>
+            <div class="large-4 small-4 columns">
+                <label>
+                    <div class="answer-total" id="total-led"> 0 </div>
+                </label>
+            </div>
+        </div>
+        <!-- *** BUTTONS *** -->
+        <div class="row">
+            <div class="large-12 columns">
+                <div class="large-6 columns">
+                    <a href="#">
+                        <input style="background-color: #990012; font-weight: bold; text-transform: uppercase; font-size: 1.25rem; width: 100%;" class="button" type="button" value="Calculate" onclick="calccost()" />
+                    </a>
+                </div>
+                <div class="large-6 columns">
+                    <a href="#">
+                        <input style="font-weight: bold; text-transform: uppercase; font-size: 1.25rem; width: 100%;" class="button" type="reset" value="Clear" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script>
+    function calccost()
+
+    {
+        var quantityMini = document.forms["lights-form"].quantitymini.value * 1;
+        var quantityC9 = document.forms["lights-form"].quantityc9.value * 1;
+        var quantityC7 = document.forms["lights-form"].quantityc7.value * 1;
+
+        var resultMiniReg = (quantityMini * (0.04 * 150 * 0.104));
+        var resultMiniLed = (quantityMini * (0.00750952 * 150 * 0.104));
+        var resultC9Reg = (quantityC9 * (0.175 * 150 * 0.104));
+        var resultC9Led = (quantityC9 * (0.002875 * 150 * 0.104));
+        var resultC7Reg = (quantityC7 * (0.125 * 150 * 0.104));
+        var resultC7Led = (quantityC7 * (0.0024 * 150 * 0.104));
+        var totalReg = resultMiniReg + resultC9Reg + resultC7Reg;
+        var totalLed = resultMiniLed + resultC9Led + resultC7Led;
+
+        resultMiniReg = Math.round(resultMiniReg * 100) / 100;
+        resultMiniLed = Math.round(resultMiniLed * 100) / 100;
+        resultC9Reg = Math.round(resultC9Reg * 100) / 100;
+        resultC9Led = Math.round(resultC9Led * 100) / 100;
+        resultC7Reg = Math.round(resultC7Reg * 100) / 100;
+        resultC7Led = Math.round(resultC7Led * 100) / 100;
+        totalReg = Math.round(totalReg * 100) / 100;
+        totalLed = Math.round(totalLed * 100) / 100;
+
+        document.getElementById("monthly-reg-mini").innerHTML = '$' + resultMiniReg;
+        document.getElementById("monthly-led-mini").innerHTML = '$' + resultMiniLed;
+        document.getElementById("monthly-reg-c9").innerHTML = '$' + resultC9Reg;
+        document.getElementById("monthly-led-c9").innerHTML = '$' + resultC9Led;
+        document.getElementById("monthly-reg-c7").innerHTML = '$' + resultC7Reg;
+        document.getElementById("monthly-led-c7").innerHTML = '$' + resultC7Led;
+        document.getElementById("total-reg").innerHTML = '$' + totalReg;
+        document.getElementById("total-led").innerHTML = '$' + totalLed;
+
+    }
+    </script>
+</body>
+
+</html>
